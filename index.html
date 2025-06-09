@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бар-да-бар - Развлекательный центр в Саратове</title>
+    <meta name="description" content="Развлекательный центр Бар-да-бар в Саратове. Банкетный зал, семейное кафе, спорт-бар, VIP-зал. Европейская кухня, пиццерия, караоке, дискотека.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__logo">
+                    <a href="index.html">
+                        <img src="images/logo.svg" alt="Бар-да-бар" class="logo">
+                    </a>
+                </div>
+                
+                <nav class="header__nav">
+                    <ul class="nav__list">
+                        <li><a href="#about" class="nav__link">О нас</a></li>
+                        <li><a href="#menu" class="nav__link">Меню</a></li>
+                        <li><a href="#halls" class="nav__link">Залы</a></li>
+                        <li><a href="#events" class="nav__link">События</a></li>
+                        <li><a href="#contacts" class="nav__link">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header__phone">
+                    <a href="tel:+78452352525" class="phone__link">+7 (8452) 35-25-25</a>
+                </div>
+                
+                <button class="header__burger" id="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu__content">
+                <div class="mobile-menu__header">
+                    <img src="images/logo.svg" alt="Бар-да-бар" class="mobile-menu__logo">
+                    <button class="mobile-menu__close" id="mobileMenuClose">×</button>
+                </div>
+                <nav class="mobile-menu__nav">
+                    <ul class="mobile-nav__list">
+                        <li><a href="#about" class="mobile-nav__link">О нас</a></li>
+                        <li><a href="#menu" class="mobile-nav__link">Меню</a></li>
+                        <li><a href="#halls" class="mobile-nav__link">Залы</a></li>
+                        <li><a href="#events" class="mobile-nav__link">События</a></li>
+                        <li><a href="#contacts" class="mobile-nav__link">Контакты</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu__contacts">
+                    <a href="tel:+78452352525" class="mobile-menu__phone">+7 (8452) 35-25-25</a>
+                    <a href="tel:+78452244068" class="mobile-menu__phone">+7 (8452) 24-40-68</a>
+                </div>
+                <div class="mobile-menu__social">
+                    <a href="#" class="social__link">VK</a>
+                    <a href="#" class="social__link">Instagram</a>
+                    <a href="#" class="social__link">Telegram</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero__slider">
+            <div class="hero__slide active">
+                <div class="hero__bg" style="background-image: url('images/hero-1.jpg')"></div>
+                <div class="container">
+                    <div class="hero__content">
+                        <h1 class="hero__title">Бар-да-бар</h1>
+                        <p class="hero__subtitle">Лучшее место для отдыха в Саратове</p>
+                        <p class="hero__description">Три зала: семейное кафе с детской площадкой, спорт-бар с ночной дискотекой и банкетный зал</p>
+                        <button class="hero__btn btn-primary" onclick="openBookingModal()">Забронировать стол</button>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__slide">
+                <div class="hero__bg" style="background-image: url('images/hero-2.jpg')"></div>
+                <div class="container">
+                    <div class="hero__content">
+                        <h2 class="hero__title">Акции и специальные предложения</h2>
+                        <p class="hero__subtitle">Каждый месяц стартует новая акция!</p>
+                        <p class="hero__description">Дискотека, караоке, европейская кухня и пиццерия</p>
+                        <a href="#events" class="hero__btn btn-primary">Смотреть акции</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero__controls">
+            <button class="hero__prev">‹</button>
+            <button class="hero__next">›</button>
+        </div>
+        <div class="hero__dots">
+            <span class="hero__dot active" data-slide="0"></span>
+            <span class="hero__dot" data-slide="1"></span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title">О нас</h2>
+                <div class="section__icon">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M20 5L25 15H35L27.5 22.5L30 32.5L20 27.5L10 32.5L12.5 22.5L5 15H15L20 5Z" fill="currentColor"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="about__content">
+                <div class="about__text">
+                    <p>В Вашем распоряжении имеется три зала: семейное кафе с детской площадкой, спорт-бар с ночной дискотекой и пивной ресторан-банкетный зал. К Вашим услугам европейская кухня, пиццерия.</p>
+                    
+                    <p>Каждый месяц стартует новая акция!</p>
+                    
+                    <p>У каждого посетителя развлекательного центра «Бар-да-бар» есть возможность получить дисконтную карту. Мы постоянно что-то меняем и обновляем для вашего удобства и комфорта!</p>
+                    
+                    <p>Приятного Вам отдыха!</p>
+                    
+                    <p>Развлекательный Центр «Бар-да-бар» находится на пересечении улиц А.Антонова и Перспективной с удобной парковкой.</p>
+                </div>
+                
+                <div class="about__halls">
+                    <div class="hall-card">
+                        <img src="images/banquet-hall.jpg" alt="Банкетный зал" class="hall-card__image">
+                        <div class="hall-card__content">
+                            <h3 class="hall-card__title">Банкетный зал</h3>
+                            <p class="hall-card__description">Вместимость зала до 110 человек. Зал отлично подойдет для проведения свадьбы, юбилея, корпоративной вечеринки, семейного торжества.</p>
+                            <button class="hall-card__btn btn-secondary">Подробнее</button>
+                        </div>
+                    </div>
+                    
+                    <div class="hall-card">
+                        <img src="images/family-cafe.jpg" alt="Семейное кафе" class="hall-card__image">
+                        <div class="hall-card__content">
+                            <h3 class="hall-card__title">Семейное кафе</h3>
+                            <p class="hall-card__description">Отличная доброжелательная атмосфера, уютная обстановка. У нас вы найдете разнообразное меню, как для взрослых, так и для детей.</p>
+                            <button class="hall-card__btn btn-secondary">Подробнее</button>
+                        </div>
+                    </div>
+                    
+                    <div class="hall-card">
+                        <img src="images/sport-bar.jpg" alt="Спорт-бар" class="hall-card__image">
+                        <div class="hall-card__content">
+                            <h3 class="hall-card__title">Спорт-бар</h3>
+                            <p class="hall-card__description">Здесь, на большом экране, вы можете наблюдать прямые трансляции ведущих национальных футбольных чемпионатов, Лиги Чемпионов.</p>
+                            <button class="hall-card__btn btn-secondary">Подробнее</button>
+                        </div>
+                    </div>
+                    
+                    <div class="hall-card">
+                        <img src="images/vip-hall.jpg" alt="VIP-зал" class="hall-card__image">
+                        <div class="hall-card__content">
+                            <h3 class="hall-card__title">VIP-зал</h3>
+                            <p class="hall-card__description">VIP-зал до 15 человек для особых мероприятий и приватных встреч.</p>
+                            <button class="hall-card__btn btn-secondary">Подробнее</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title">Наше меню</h2>
+                <div class="section__icon">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M8 12H32L30 28H10L8 12Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M8 12L6 4H2" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="34" r="2" fill="currentColor"/>
+                        <circle cx="28" cy="34" r="2" fill="currentColor"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="menu__categories">
+                <button class="menu__category active" data-category="all">Все</button>
+                <button class="menu__category" data-category="cold">Холодные закуски</button>
+                <button class="menu__category" data-category="hot">Горячие блюда</button>
+                <button class="menu__category" data-category="pizza">Пицца</button>
+                <button class="menu__category" data-category="drinks">Напитки</button>
+                <button class="menu__category" data-category="burgers">Бургеры</button>
+            </div>
+            
+            <div class="menu__items" id="menuItems">
+                <!-- Menu items will be loaded here -->
+            </div>
+            
+            <div class="menu__actions">
+                <button class="btn-primary" onclick="openMenuModal()">Посмотреть полное меню</button>
+                <button class="btn-secondary" onclick="openDeliveryModal()">Заказать доставку</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events" id="events">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title">События и акции</h2>
+                <div class="section__icon">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <rect x="6" y="8" width="28" height="24" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M14 4V12M26 4V12" stroke="currentColor" stroke-width="2"/>
+                        <path d="M6 16H34" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="events__tabs">
+                <button class="events__tab active" data-tab="current">Текущие акции</button>
+                <button class="events__tab" data-tab="upcoming">Афиша</button>
+            </div>
+            
+            <div class="events__content">
+                <div class="events__tab-content active" id="current">
+                    <div class="events__grid">
+                        <!-- Current events will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="events__tab-content" id="upcoming">
+                    <div class="events__grid">
+                        <!-- Upcoming events will be loaded here -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="events__actions">
+                <button class="btn-primary">Смотреть все события</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking">
+        <div class="container">
+            <div class="booking__content">
+                <div class="booking__text">
+                    <h2 class="booking__title">Забронировать банкет или стол?</h2>
+                    <p class="booking__description">Оставьте Ваши контакты и мы перезвоним для уточнения деталей</p>
+                </div>
+                
+                <form class="booking__form" id="bookingForm">
+                    <div class="form__group">
+                        <input type="text" class="form__input" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form__group">
+                        <input type="tel" class="form__input" placeholder="+7" required>
+                    </div>
+                    <div class="form__group">
+                        <select class="form__select" required>
+                            <option value="">Выберите зал</option>
+                            <option value="banquet">Банкетный зал</option>
+                            <option value="family">Семейное кафе</option>
+                            <option value="sport">Спорт-бар</option>
+                            <option value="vip">VIP-зал</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="form__submit btn-primary">Отправить</button>
+                    <p class="form__privacy">
+                        Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь c политикой конфиденциальности
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts Section -->
+    <section class="contacts" id="contacts">
+        <div class="container">
+            <div class="contacts__content">
+                <div class="contacts__info">
+                    <h2 class="contacts__title">Контакты</h2>
+                    
+                    <div class="contact__item">
+                        <h3 class="contact__label">Адрес:</h3>
+                        <p class="contact__value">Саратов, Днепропетровская, 2/33 (пересечение с ул. Антонова)</p>
+                    </div>
+                    
+                    <div class="contact__item">
+                        <h3 class="contact__label">Телефоны:</h3>
+                        <p class="contact__value">
+                            <a href="tel:+78452352525">8(8452)35-25-25</a><br>
+                            <a href="tel:+78452244068">8(8452)24-40-68</a>
+                        </p>
+                    </div>
+                    
+                    <div class="contact__item">
+                        <h3 class="contact__label">Факс:</h3>
+                        <p class="contact__value">24-40-67</p>
+                    </div>
+                    
+                    <div class="contact__item">
+                        <h3 class="contact__label">E-mail:</h3>
+                        <p class="contact__value">
+                            <a href="mailto:bardabar.sar@mail.ru">bardabar.sar@mail.ru</a>
+                        </p>
+                    </div>
+                    
+                    <div class="contact__item">
+                        <h3 class="contact__label">Режим работы:</h3>
+                        <div class="schedule">
+                            <p><strong>Общий режим работы РЦ "Бар-да-бар"</strong></p>
+                            <p>Воскресенье - четверг: 13:00 - 23:00</p>
+                            <p>Пятница - суббота: 12:00 - 04:00</p>
+                            
+                            <p><strong>Спорт-бар (караоке/диско-бар)</strong></p>
+                            <p>Пятница-Суббота и предпраздничные/праздничные дни</p>
+                            <p>Караоке, дискотека: 18:00 - 04:00 (с 20:00 до 4:00)</p>
+                            
+                            <p><strong>Банкетные залы</strong></p>
+                            <p>Банкет (по согласованию): до 24:00</p>
+                            
+                            <p><strong>Семейное кафе</strong></p>
+                            <p>Воскресенье - четверг: 13:00 - 23:00</p>
+                            <p>Пятница - суббота: 12:00 - 24:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contacts__map">
+                    <div id="map" class="map"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__logo">
+                    <img src="images/logo.svg" alt="Бар-да-бар" class="footer__logo-img">
+                    <p class="footer__tagline">Лучшее место для отдыха</p>
+                </div>
+                
+                <div class="footer__nav">
+                    <h4 class="footer__title">Навигация</h4>
+                    <ul class="footer__list">
+                        <li><a href="#about" class="footer__link">О нас</a></li>
+                        <li><a href="#menu" class="footer__link">Меню</a></li>
+                        <li><a href="#halls" class="footer__link">Залы</a></li>
+                        <li><a href="#events" class="footer__link">События</a></li>
+                        <li><a href="#contacts" class="footer__link">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer__contacts">
+                    <h4 class="footer__title">Связаться с нами</h4>
+                    <p class="footer__contact">
+                        <a href="tel:+78452352525">+7 (8452) 35-25-25</a>
+                    </p>
+                    <p class="footer__contact">
+                        <a href="tel:+78452244068">+7 (8452) 24-40-68</a>
+                    </p>
+                    <p class="footer__contact">
+                        <a href="mailto:bardabar.sar@mail.ru">bardabar.sar@mail.ru</a>
+                    </p>
+                </div>
+                
+                <div class="footer__social">
+                    <h4 class="footer__title">Следите за новостями</h4>
+                    <div class="social__links">
+                        <a href="#" class="social__link">VK</a>
+                        <a href="#" class="social__link">Instagram</a>
+                        <a href="#" class="social__link">Telegram</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2024 Бар-да-бар. Все права защищены.</p>
+                <p class="footer__legal">Не является публичной офертой</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal" id="bookingModal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3 class="modal__title">Бронирование стола</h3>
+                <button class="modal__close">&times;</button>
+            </div>
+            <div class="modal__body">
+                <form class="modal__form">
+                    <div class="form__group">
+                        <label class="form__label">Имя</label>
+                        <input type="text" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label">Телефон</label>
+                        <input type="tel" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label">Зал</label>
+                        <select class="form__select" required>
+                            <option value="">Выберите зал</option>
+                            <option value="banquet">Банкетный зал</option>
+                            <option value="family">Семейное кафе</option>
+                            <option value="sport">Спорт-бар</option>
+                            <option value="vip">VIP-зал</option>
+                        </select>
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label">Дата</label>
+                        <input type="date" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label">Время</label>
+                        <input type="time" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label">Количество гостей</label>
+                        <input type="number" class="form__input" min="1" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Забронировать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
