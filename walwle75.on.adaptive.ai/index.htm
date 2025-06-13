@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <title>Бар-да-бар / adaptive</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Уютная атмосфера, изысканная кухня">
+    <link rel="stylesheet" href="cdn/p2HJqdjKZBRMBdCWZgQM6a3yGBQDDWVT.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="cdn/eD8brD26ghCHe43RapED3CG6CJmx6TqD.css" crossorigin="anonymous">
+    <link rel="icon" href="cdn/erLBU3T7tGHBkqgWrciMZZDftpxjqAN7.png" type="image/x-icon">
+    <meta property="og:title" content="Бар-да-бар / adaptive">
+    <meta property="og:description" content="Уютная атмосфера, изысканная кухня">
+    <meta property="og:image" content="https://walwle75.on.adaptive.ai/cdn/erLBU3T7tGHBkqgWrciMZZDftpxjqAN7.png">
+    <meta property="og:url" content="https://walwle75.adaptive.ai">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Adaptive">
+    
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Бар-да-бар / adaptive">
+    <meta name="twitter:description" content="Уютная атмосфера, изысканная кухня">
+    <meta name="twitter:image" content="https://walwle75.on.adaptive.ai/cdn/erLBU3T7tGHBkqgWrciMZZDftpxjqAN7.png">
+
+    <script type="text/javascript">
+      (function (f, b) { if (!b.__SV) { var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) { function g(a, d) { var b = d.split("."); 2 == b.length && ((a = a[b[0]]), (d = b[1])); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))); }; } var a = b; "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel"); a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d; }; a.people.toString = function () { return a.toString(1) + ".people (stub)"; }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split( " "); for (h = 0; h < i.length; h++) g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]); }; } for ( var d = {}, e = ["get_group"].concat( Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++) b(j[c]); return d; }; b._i.push([e, f, c]); }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g); } })(document, window.mixpanel || []);
+    </script>
+    
+    <script>
+      (() => {
+        const root = window.document.documentElement
+
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light"
+
+        root.classList.remove("light", "dark")
+        root.classList.add(systemTheme)
+      })();
+    </script>
+    
+    <script>
+      window.__VERSION_ID__ = "ELVQLr4YVBfjVPFz";
+      window.__REALTIME_DOMAIN__ = "rt.acflare.com";
+      window.__ROOT_URL__ = "https://adaptive.ai";
+      window.__BASE_URL__ = "https://walwle75.adaptive.ai";
+      
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="cdn/nNdiWFhgrZYzQBfJbMYiACEC2HyHpnDQ.js"></script>
+
+    
+    
+    <script>
+      mixpanel.init("82af7ae09ec18611ca840273f6863e5c");
+      
+      mixpanel.track("$mp_web_page_view", {
+        isGuestApp: "true",
+        isCustomDomain: "false",
+        versionId: "ELVQLr4YVBfjVPFz",
+        subdomain: "walwle75",
+        current_domain: "walwle75.adaptive.ai",
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+          event.preventDefault();
+          window.parent.postMessage({ type: 'toggleGoonbarVisibility', source: 'iframe' }, '*');
+        } else if (event.key === 'Escape') {
+          // escape to minimize
+          event.preventDefault();
+          window.parent.postMessage({ type: 'minimize', source: 'iframe' }, '*');
+        }
+      }, true);
+      window.addEventListener('message', (event) => {
+        if (!event.data || typeof event.data !== 'object') return;
+        if (event.data.type === 'setTheme') {
+          const theme = event.data.payload?.theme;
+          if (theme === 'dark' || theme === 'light') {
+            document.documentElement.classList.remove('dark', 'light');
+            document.documentElement.classList.add(theme);
+          }
+        }
+      });
+    </script>
+    
+    
+<style>
+.__drawer_container {
+  position: fixed;
+  pointer-events: auto !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: backdrop-filter 1s ease;
+}
+
+.__drawer_container.__hidden {
+  visibility: hidden;
+  pointer-events: none !important
+  backdrop-filter: blur(0);
+}
+
+.__auth_close_button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  background: rgb(0, 0, 0, 0.8);
+  border: none;
+  mask: url(x.svg) no-repeat center;
+  mask-size: contain;
+  transition: opacity 0.3s ease;
+}
+
+.__auth_close_button:hover {
+  background: rgb(0, 0, 0, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .__drawer_container {
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .__auth_close_button {
+    background: rgb(255, 255, 255, 0.8);
+  }
+
+  .__auth_close_button:hover {
+    background: rgb(255, 255, 255, 1);
+  }
+}
+
+.__drawer_frame {
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  max-height: 340px;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.__drawer_frame.__hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .__drawer_container {
+    justify-content: flex-end;
+  }
+
+  .__drawer_frame {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    max-width: 100%;
+  }
+}
+</style>
+
+<div class="__drawer_container __hidden">
+  <iframe class="__drawer_frame __hidden" id="__AUTH_DRAWER" allow="fullscreen; camera; microphone; gyroscope; accelerometer; clipboard-write; clipboard-read; autoplay; geolocation; display-capture; picture-in-picture; payment; midi; bluetooth; web-share; screen-wake-lock; xr-spatial-tracking; encrypted-media; idle-detection; hid; serial; window-management" loading="eager" referrerpolicy="unsafe-url" title="Login">
+  </iframe>
+  <div alt="Close" class="__auth_close_button"></div>
+</div>
+
+<script>
+(function() {
+  const container = document.querySelector('.__drawer_container');
+  const close = document.querySelector('.__auth_close_button');
+  function closeFrame() {
+    container.classList.add('__hidden');
+    const frame = document.getElementById('__AUTH_DRAWER');
+    frame.classList.add('__hidden');
+  }
+  close.addEventListener('click', closeFrame);
+  container.addEventListener('click', closeFrame);
+  
+})();
+  
+window.__OPEN_AUTH_DRAWER__ = (url) => {
+  const frame = document.getElementById('__AUTH_DRAWER');
+  const container = document.querySelector('.__drawer_container');
+  const close = document.querySelector('.__auth_close_button');
+  if (container.classList.contains('__hidden')) {
+    container.classList.remove('__hidden');
+    frame.src = url;
+    frame.onload = () => {
+      close.classList.remove('__hidden');
+      frame.classList.remove('__hidden');
+      frame.contentWindow.focus();
+    };
+  }
+}
+</script>
+
+  </body>
+</html>

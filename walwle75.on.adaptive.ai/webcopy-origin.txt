@@ -1,0 +1,24 @@
+Uri: https://adaptive.ai/cdn/eD8brD26ghCHe43RapED3CG6CJmx6TqD.css
+File Name: C:\Downloaded Web Sites\walwle75.on.adaptive.ai\cdn\eD8brD26ghCHe43RapED3CG6CJmx6TqD.css
+Content Type: text/css
+
+Uri: https://adaptive.ai/cdn/nNdiWFhgrZYzQBfJbMYiACEC2HyHpnDQ.js
+File Name: C:\Downloaded Web Sites\walwle75.on.adaptive.ai\cdn\nNdiWFhgrZYzQBfJbMYiACEC2HyHpnDQ.js
+Content Type: application/javascript
+
+Uri: https://adaptive.ai/cdn/p2HJqdjKZBRMBdCWZgQM6a3yGBQDDWVT.css
+File Name: C:\Downloaded Web Sites\walwle75.on.adaptive.ai\cdn\p2HJqdjKZBRMBdCWZgQM6a3yGBQDDWVT.css
+Content Type: text/css
+
+Uri: https://static.acflare.com/x.svg
+File Name: C:\Downloaded Web Sites\walwle75.on.adaptive.ai\x.svg
+Content Type: image/svg+xml
+
+Uri: https://walwle75.on.adaptive.ai/?_evid=ELVQLr4YVBfjVPFz
+File Name: C:\Downloaded Web Sites\walwle75.on.adaptive.ai\index.htm
+Content Type: text/html
+
+Uri: https://walwle75.on.adaptive.ai/cdn/erLBU3T7tGHBkqgWrciMZZDftpxjqAN7.png
+File Name: C:\Downloaded Web Sites\walwle75.on.adaptive.ai\cdn\erLBU3T7tGHBkqgWrciMZZDftpxjqAN7.png
+Content Type: image/png
+

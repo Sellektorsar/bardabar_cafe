@@ -1,348 +1,687 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Админ-панель - Бар-да-бар</title>
-    <link rel="stylesheet" href="admin.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Login Form -->
-    <div class="login-container" id="loginContainer">
-        <div class="login-form">
-            <div class="login-header">
-                <h1>Админ-панель</h1>
-                <p>Бар-да-бар</p>
+// DOM Elements
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuClose = document.getElementById('mobileMenuClose');
+const heroSlides = document.querySelectorAll('.hero__slide');
+const heroDots = document.querySelectorAll('.hero__dot');
+const heroNext = document.querySelector('.hero__next');
+const heroPrev = document.querySelector('.hero__prev');
+
+// Mobile Menu
+function toggleMobileMenu() {
+    mobileMenu.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+}
+
+function closeMobileMenu() {
+    mobileMenu.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Event Listeners for Mobile Menu
+if (burger) {
+    burger.addEventListener('click', toggleMobileMenu);
+}
+
+if (mobileMenuClose) {
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+}
+
+// Close mobile menu when clicking on links
+document.querySelectorAll('.mobile-nav__link').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+});
+
+// Close mobile menu when clicking outside
+mobileMenu?.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) {
+        closeMobileMenu();
+    }
+});
+
+// Hero Slider
+let currentSlide = 0;
+const totalSlides = heroSlides.length;
+
+function showSlide(index) {
+    heroSlides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+    });
+    
+    heroDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+    });
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+}
+
+// Hero Slider Event Listeners
+if (heroNext) {
+    heroNext.addEventListener('click', nextSlide);
+}
+
+if (heroPrev) {
+    heroPrev.addEventListener('click', prevSlide);
+}
+
+heroDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        currentSlide = index;
+        showSlide(currentSlide);
+    });
+});
+
+// Auto-play slider
+let sliderInterval = setInterval(nextSlide, 5000);
+
+// Pause auto-play on hover
+const heroSection = document.querySelector('.hero');
+if (heroSection) {
+    heroSection.addEventListener('mouseenter', () => {
+        clearInterval(sliderInterval);
+    });
+    
+    heroSection.addEventListener('mouseleave', () => {
+        sliderInterval = setInterval(nextSlide, 5000);
+    });
+}
+
+// Menu Data
+const menuData = {
+    cold: [
+        {
+            name: "Ассорти рыбное",
+            description: "Семга м/с, масляная рыба, лист салата, зелень, лимон",
+            price: "1200 р.",
+            weight: "240/45 гр",
+            image: "images/menu/fish-assort.jpg"
+        },
+        {
+            name: "Ассорти мясное",
+            description: "Язык говяжий, буженина, рулет куриный, черри, маслины, зелень, хрен, горчица дижонская",
+            price: "750 р.",
+            weight: "150/20/30 гр",
+            image: "images/menu/meat-assort.jpg"
+        },
+        {
+            name: "Сырная тарелка",
+            description: "Пармезан, маасдам, дорблю, грецкий орех, мед, виноград",
+            price: "680 р.",
+            weight: "210/55 гр",
+            image: "images/menu/cheese-plate.jpg"
+        },
+        {
+            name: "Домашний разносол",
+            description: "Капуста квашеная, огурец соленый, черри соленые, черемша и чеснок маринованный",
+            price: "450 р.",
+            weight: "360 гр",
+            image: "images/menu/pickles.jpg"
+        }
+    ],
+    hot: [
+        {
+            name: "Стейк из свинины",
+            description: "Сочный стейк из свиной шеи с гарниром",
+            price: "890 р.",
+            weight: "250/150 гр",
+            image: "images/menu/pork-steak.jpg"
+        },
+        {
+            name: "Куриная грудка гриль",
+            description: "Куриная грудка на гриле с овощами",
+            price: "650 р.",
+            weight: "200/100 гр",
+            image: "images/menu/chicken-grill.jpg"
+        }
+    ],
+    pizza: [
+        {
+            name: "Пицца Маргарита",
+            description: "Томатный соус, моцарелла, базилик",
+            price: "450 р.",
+            weight: "30 см",
+            image: "images/menu/pizza-margherita.jpg"
+        },
+        {
+            name: "Пицца Пепперони",
+            description: "Томатный соус, моцарелла, пепперони",
+            price: "550 р.",
+            weight: "30 см",
+            image: "images/menu/pizza-pepperoni.jpg"
+        }
+    ],
+    drinks: [
+        {
+            name: "Кофе американо",
+            description: "Классический американо",
+            price: "150 р.",
+            weight: "200 мл",
+            image: "images/menu/americano.jpg"
+        },
+        {
+            name: "Чай черный",
+            description: "Черный чай с лимоном",
+            price: "120 р.",
+            weight: "300 мл",
+            image: "images/menu/black-tea.jpg"
+        }
+    ],
+    burgers: [
+        {
+            name: "Бургер Йорк",
+            description: "Котлета куриная, булка белая, бекон копченый, сыр, помидор, лист салата, красный лук, подается с картофелем фри и соусом цезарь",
+            price: "470 р.",
+            weight: "310/100/50 гр",
+            image: "images/menu/burger-york.jpg"
+        },
+        {
+            name: "Альпбургерс",
+            description: "Говяжья котлета, булка белая, сыр, огурец соленый, помидор, лук красный, лист салата, подается с картофелем фри и соусом барбекю",
+            price: "490 р.",
+            weight: "300/100/50 гр",
+            image: "images/menu/alpburgers.jpg"
+        }
+    ]
+};
+
+// Menu Functions
+function renderMenuItems(category = 'all') {
+    const menuContainer = document.getElementById('menuItems');
+    if (!menuContainer) return;
+    
+    let items = [];
+    
+    if (category === 'all') {
+        Object.values(menuData).forEach(categoryItems => {
+            items = items.concat(categoryItems);
+        });
+    } else {
+        items = menuData[category] || [];
+    }
+    
+    menuContainer.innerHTML = items.map(item => `
+        <div class="menu-item fade-in-up">
+            <div class="menu-item__image">
+                <img src="${item.image}" alt="${item.name}" loading="lazy" onerror="this.src='images/placeholder.jpg'">
             </div>
-            
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="username">Логин</label>
-                    <input type="text" id="username" name="username" required>
+            <div class="menu-item__content">
+                <h3 class="menu-item__name">${item.name}</h3>
+                <p class="menu-item__description">${item.description}</p>
+                <div class="menu-item__footer">
+                    <span class="menu-item__price">${item.price}</span>
+                    <span class="menu-item__weight">${item.weight}</span>
                 </div>
-                
-                <div class="form-group">
-                    <label for="password">Пароль</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                
-                <button type="submit" class="btn-primary">Войти</button>
-                
-                <div class="error-message" id="errorMessage"></div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Admin Dashboard -->
-    <div class="admin-dashboard" id="adminDashboard" style="display: none;">
-        <!-- Header -->
-        <header class="admin-header">
-            <div class="admin-header__content">
-                <h1>Панель управления</h1>
-                <div class="admin-header__actions">
-                    <span class="admin-user">Администратор</span>
-                    <button class="btn-logout" onclick="logout()">Выйти</button>
-                </div>
-            </div>
-        </header>
-
-        <!-- Sidebar -->
-        <aside class="admin-sidebar">
-            <nav class="admin-nav">
-                <ul class="admin-nav__list">
-                    <li class="admin-nav__item">
-                        <a href="#about" class="admin-nav__link active" data-section="about">
-                            <span class="nav-icon">📝</span>
-                            О нас
-                        </a>
-                    </li>
-                    <li class="admin-nav__item">
-                        <a href="#menu" class="admin-nav__link" data-section="menu">
-                            <span class="nav-icon">🍽️</span>
-                            Меню
-                        </a>
-                    </li>
-                    <li class="admin-nav__item">
-                        <a href="#staff" class="admin-nav__link" data-section="staff">
-                            <span class="nav-icon">👥</span>
-                            Персонал
-                        </a>
-                    </li>
-                    <li class="admin-nav__item">
-                        <a href="#events" class="admin-nav__link" data-section="events">
-                            <span class="nav-icon">🎉</span>
-                            События
-                        </a>
-                    </li>
-                    <li class="admin-nav__item">
-                        <a href="#bookings" class="admin-nav__link" data-section="bookings">
-                            <span class="nav-icon">📅</span>
-                            Бронирования
-                        </a>
-                    </li>
-                    <li class="admin-nav__item">
-                        <a href="#settings" class="admin-nav__link" data-section="settings">
-                            <span class="nav-icon">⚙️</span>
-                            Настройки
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="admin-main">
-            <!-- About Section -->
-            <section class="admin-section active" id="about">
-                <div class="section-header">
-                    <h2>Редактирование раздела "О нас"</h2>
-                    <button class="btn-primary" onclick="saveAbout()">Сохранить</button>
-                </div>
-                
-                <div class="form-container">
-                    <div class="form-group">
-                        <label for="aboutTitle">Заголовок</label>
-                        <input type="text" id="aboutTitle" value="О нас">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="aboutContent">Содержание</label>
-                        <textarea id="aboutContent" rows="10">В Вашем распоряжении имеется три зала: семейное кафе с детской площадкой, спорт-бар с ночной дискотекой и пивной ресторан-банкетный зал. К Вашим услугам европейская кухня, пиццерия.
-
-Каждый месяц стартует новая акция!
-
-У каждого посетителя развлекательного центра «Бар-да-бар» есть возможность получить дисконтную карту. Мы постоянно что-то меняем и обновляем для вашего удобства и комфорта!
-
-Приятного Вам отдыха!
-
-Развлекательный Центр «Бар-да-бар» находится на пересечении улиц А.Антонова и Перспективной с удобной парковкой.</textarea>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Menu Section -->
-            <section class="admin-section" id="menu">
-                <div class="section-header">
-                    <h2>Управление меню</h2>
-                    <button class="btn-primary" onclick="addMenuItem()">Добавить блюдо</button>
-                </div>
-                
-                <div class="menu-categories">
-                    <button class="category-btn active" data-category="cold">Холодные закуски</button>
-                    <button class="category-btn" data-category="hot">Горячие блюда</button>
-                    <button class="category-btn" data-category="pizza">Пицца</button>
-                    <button class="category-btn" data-category="drinks">Напитки</button>
-                    <button class="category-btn" data-category="burgers">Бургеры</button>
-                </div>
-                
-                <div class="menu-items" id="menuItemsList">
-                    <!-- Menu items will be loaded here -->
-                </div>
-            </section>
-
-            <!-- Staff Section -->
-            <section class="admin-section" id="staff">
-                <div class="section-header">
-                    <h2>Управление персоналом</h2>
-                    <button class="btn-primary" onclick="addStaffMember()">Добавить сотрудника</button>
-                </div>
-                
-                <div class="staff-grid" id="staffGrid">
-                    <!-- Staff members will be loaded here -->
-                </div>
-            </section>
-
-            <!-- Events Section -->
-            <section class="admin-section" id="events">
-                <div class="section-header">
-                    <h2>Управление событиями</h2>
-                    <button class="btn-primary" onclick="addEvent()">Добавить событие</button>
-                </div>
-                
-                <div class="events-tabs">
-                    <button class="tab-btn active" data-tab="current">Текущие акции</button>
-                    <button class="tab-btn" data-tab="upcoming">Афиша</button>
-                </div>
-                
-                <div class="events-content" id="eventsContent">
-                    <!-- Events will be loaded here -->
-                </div>
-            </section>
-
-            <!-- Bookings Section -->
-            <section class="admin-section" id="bookings">
-                <div class="section-header">
-                    <h2>Бронирования</h2>
-                    <div class="booking-filters">
-                        <select id="bookingFilter">
-                            <option value="all">Все</option>
-                            <option value="pending">Ожидают</option>
-                            <option value="confirmed">Подтверждены</option>
-                            <option value="cancelled">Отменены</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="bookings-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Дата</th>
-                                <th>Время</th>
-                                <th>Имя</th>
-                                <th>Телефон</th>
-                                <th>Зал</th>
-                                <th>Гости</th>
-                                <th>Статус</th>
-                                <th>Действия</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bookingsTableBody">
-                            <!-- Bookings will be loaded here -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Settings Section -->
-            <section class="admin-section" id="settings">
-                <div class="section-header">
-                    <h2>Настройки</h2>
-                    <button class="btn-primary" onclick="saveSettings()">Сохранить</button>
-                </div>
-                
-                <div class="settings-grid">
-                    <div class="settings-group">
-                        <h3>Контактная информация</h3>
-                        <div class="form-group">
-                            <label for="phone1">Телефон 1</label>
-                            <input type="tel" id="phone1" value="+7 (8452) 35-25-25">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone2">Телефон 2</label>
-                            <input type="tel" id="phone2" value="+7 (8452) 24-40-68">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" value="bardabar.sar@mail.ru">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Адрес</label>
-                            <input type="text" id="address" value="Саратов, Днепропетровская, 2/33">
-                        </div>
-                    </div>
-                    
-                    <div class="settings-group">
-                        <h3>Режим работы</h3>
-                        <div class="form-group">
-                            <label for="workingHours">Общий режим работы</label>
-                            <textarea id="workingHours" rows="5">Воскресенье - четверг: 13:00 - 23:00
-Пятница - суббота: 12:00 - 04:00</textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="settings-group">
-                        <h3>Социальные сети</h3>
-                        <div class="form-group">
-                            <label for="vkLink">ВКонтакте</label>
-                            <input type="url" id="vkLink" placeholder="https://vk.com/...">
-                        </div>
-                        <div class="form-group">
-                            <label for="instagramLink">Instagram</label>
-                            <input type="url" id="instagramLink" placeholder="https://instagram.com/...">
-                        </div>
-                        <div class="form-group">
-                            <label for="telegramLink">Telegram</label>
-                            <input type="url" id="telegramLink" placeholder="https://t.me/...">
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <!-- Modals -->
-    <div class="modal" id="menuItemModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Редактирование блюда</h3>
-                <button class="modal-close" onclick="closeModal('menuItemModal')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="menuItemForm">
-                    <div class="form-group">
-                        <label for="itemName">Название</label>
-                        <input type="text" id="itemName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="itemDescription">Описание</label>
-                        <textarea id="itemDescription" rows="3" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="itemPrice">Цена</label>
-                        <input type="text" id="itemPrice" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="itemWeight">Вес/Объем</label>
-                        <input type="text" id="itemWeight" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="itemCategory">Категория</label>
-                        <select id="itemCategory" required>
-                            <option value="cold">Холодные закуски</option>
-                            <option value="hot">Горячие блюда</option>
-                            <option value="pizza">Пицца</option>
-                            <option value="drinks">Напитки</option>
-                            <option value="burgers">Бургеры</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="itemImage">Изображение</label>
-                        <input type="file" id="itemImage" accept="image/*">
-                    </div>
-                    <div class="modal-actions">
-                        <button type="button" class="btn-secondary" onclick="closeModal('menuItemModal')">Отмена</button>
-                        <button type="submit" class="btn-primary">Сохранить</button>
-                    </div>
-                </form>
             </div>
         </div>
-    </div>
+    `).join('');
+}
 
-    <div class="modal" id="staffModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Редактирование сотрудника</h3>
-                <button class="modal-close" onclick="closeModal('staffModal')">&times;</button>
+// Menu Category Switching
+document.querySelectorAll('.menu__category').forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        document.querySelectorAll('.menu__category').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        // Render items for selected category
+        const category = button.dataset.category;
+        renderMenuItems(category);
+    });
+});
+
+// Events Data
+const eventsData = {
+    current: [
+        {
+            title: "Скидка 20% на банкеты",
+            description: "При заказе банкета на выходные дни",
+            image: "images/events/banquet-discount.jpg",
+            date: "До 31 декабря"
+        },
+        {
+            title: "Счастливые часы",
+            description: "Скидка 15% на все напитки с 15:00 до 18:00",
+            image: "images/events/happy-hours.jpg",
+            date: "Ежедневно"
+        }
+    ],
+    upcoming: [
+        {
+            title: "Новогодняя вечеринка",
+            description: "Встречаем Новый год вместе!",
+            image: "images/events/new-year.jpg",
+            date: "31 декабря"
+        },
+        {
+            title: "Караоке-батл",
+            description: "Соревнование между командами",
+            image: "images/events/karaoke-battle.jpg",
+            date: "15 января"
+        }
+    ]
+};
+
+// Events Functions
+function renderEvents(category = 'current') {
+    const eventsContainer = document.querySelector(`#${category} .events__grid`);
+    if (!eventsContainer) return;
+    
+    const events = eventsData[category] || [];
+    
+    eventsContainer.innerHTML = events.map(event => `
+        <div class="event-card fade-in-up">
+            <div class="event-card__image">
+                <img src="${event.image}" alt="${event.title}" loading="lazy" onerror="this.src='images/placeholder.jpg'">
             </div>
-            <div class="modal-body">
-                <form id="staffForm">
-                    <div class="form-group">
-                        <label for="staffName">Имя</label>
-                        <input type="text" id="staffName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="staffPosition">Должность</label>
-                        <input type="text" id="staffPosition" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="staffDescription">Описание</label>
-                        <textarea id="staffDescription" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="staffPhoto">Фото</label>
-                        <input type="file" id="staffPhoto" accept="image/*">
-                    </div>
-                    <div class="modal-actions">
-                        <button type="button" class="btn-secondary" onclick="closeModal('staffModal')">Отмена</button>
-                        <button type="submit" class="btn-primary">Сохранить</button>
-                    </div>
-                </form>
+            <div class="event-card__content">
+                <h3 class="event-card__title">${event.title}</h3>
+                <p class="event-card__description">${event.description}</p>
+                <div class="event-card__date">${event.date}</div>
             </div>
         </div>
-    </div>
+    `).join('');
+}
 
-    <script src="admin.js"></script>
-</body>
-</html>
+// Events Tab Switching
+document.querySelectorAll('.events__tab').forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all buttons and content
+        document.querySelectorAll('.events__tab').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelectorAll('.events__tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        // Add active class to clicked button and corresponding content
+        button.classList.add('active');
+        const tabId = button.dataset.tab;
+        document.getElementById(tabId).classList.add('active');
+        
+        // Render events for selected tab
+        renderEvents(tabId);
+    });
+});
+
+// Modal Functions
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function openBookingModal() {
+    openModal('bookingModal');
+}
+
+function openMenuModal() {
+    // This would open a full menu modal
+    alert('Полное меню будет доступно в ближайшее время');
+}
+
+function openDeliveryModal() {
+    // This would open a delivery modal
+    alert('Заказ доставки будет доступен в ближайшее время');
+}
+
+// Modal Event Listeners
+document.querySelectorAll('.modal__close').forEach(closeBtn => {
+    closeBtn.addEventListener('click', () => {
+        const modal = closeBtn.closest('.modal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
+
+document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
+
+// Booking Form Handling
+const bookingForm = document.getElementById('bookingForm');
+if (bookingForm) {
+    bookingForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = bookingForm.querySelector('input[type="text"]').value.trim();
+        const phone = bookingForm.querySelector('input[type="tel"]').value.trim();
+        const hall = bookingForm.querySelector('select').value;
+        const submitBtn = bookingForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+
+        // Валидация
+        if (!name || !phone || !hall) {
+            showFormMessage(bookingForm, 'Пожалуйста, заполните все поля', false);
+            return;
+        }
+        if (!/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(phone)) {
+            showFormMessage(bookingForm, 'Введите корректный номер телефона', false);
+            return;
+        }
+
+        // Блокируем кнопку
+        submitBtn.innerHTML = '<span class="loading"></span> Отправка...';
+        submitBtn.disabled = true;
+
+        // Отправка данных
+        try {
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, phone, hall })
+            });
+            const result = await response.json();
+            if (result.status === 'success') {
+                showFormMessage(bookingForm, 'Спасибо! Ваша заявка отправлена.', true);
+                bookingForm.reset();
+            } else {
+                showFormMessage(bookingForm, result.message || 'Ошибка отправки', false);
+            }
+        } catch (err) {
+            showFormMessage(bookingForm, 'Ошибка соединения с сервером', false);
+        }
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
+}
+
+function showFormMessage(form, message, success = true) {
+    let msg = form.querySelector('.form-message');
+    if (!msg) {
+        msg = document.createElement('div');
+        msg.className = 'form-message';
+        form.appendChild(msg);
+    }
+    msg.textContent = message;
+    msg.style.color = success ? 'green' : 'red';
+    msg.style.marginTop = '10px';
+}
+
+// Smooth Scrolling for Navigation Links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Intersection Observer for Animations
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+});
+
+// Observe elements for animation
+document.querySelectorAll('.hall-card, .menu-item, .event-card').forEach(el => {
+    observer.observe(el);
+});
+
+// Sticky header scroll effect
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+    if (header) {
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+});
+
+// Initialize Map (placeholder)
+function initMap() {
+    const mapElement = document.getElementById('map');
+    if (mapElement) {
+        mapElement.innerHTML = `
+            <div style="text-align: center; padding: 50px;">
+                <p>Карта будет загружена</p>
+                <p><strong>Адрес:</strong> Саратов, Днепропетровская, 2/33</p>
+                <p>(пересечение с ул. Антонова)</p>
+            </div>
+        `;
+    }
+}
+
+// Phone Number Formatting
+document.querySelectorAll('input[type="tel"]').forEach(input => {
+    input.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.startsWith('8')) {
+            value = '7' + value.slice(1);
+        }
+        if (value.startsWith('7')) {
+            value = value.slice(0, 11);
+            const formatted = value.replace(/(\d)(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1 ($2) $3-$4-$5');
+            e.target.value = formatted;
+        }
+    });
+});
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    renderMenuItems();
+    renderEvents('current');
+    renderEvents('upcoming');
+    initMap();
+    
+    // Add CSS for menu and event items
+    const style = document.createElement('style');
+    style.textContent = `
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .menu-item__image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .menu-item__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item:hover .menu-item__image img {
+            transform: scale(1.05);
+        }
+        
+        .menu-item__content {
+            padding: 25px;
+        }
+        
+        .menu-item__name {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .menu-item__description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+        
+        .menu-item__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .menu-item__price {
+            color: #ff6b35;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .menu-item__weight {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .event-card__image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .event-card__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .event-card:hover .event-card__image img {
+            transform: scale(1.05);
+        }
+        
+        .event-card__content {
+            padding: 25px;
+        }
+        
+        .event-card__title {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .event-card__description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .event-card__date {
+            color: #ff6b35;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+    `;
+    document.head.appendChild(style);
+});
+
+// Keyboard Navigation
+document.addEventListener('keydown', (e) => {
+    // Close modals with Escape key
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.modal.active').forEach(modal => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // Close mobile menu
+        if (mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    }
+    
+    // Navigate slider with arrow keys
+    if (e.key === 'ArrowLeft') {
+        prevSlide();
+    } else if (e.key === 'ArrowRight') {
+        nextSlide();
+    }
+});
+
+// Performance Optimization: Lazy Loading Images
+const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                imageObserver.unobserve(img);
+            }
+        }
+    });
+});
+
+// Apply lazy loading to images
+document.querySelectorAll('img[data-src]').forEach(img => {
+    imageObserver.observe(img);
+});
+
+// Error Handling for Images
+document.addEventListener('error', (e) => {
+    if (e.target.tagName === 'IMG') {
+        e.target.src = 'images/placeholder.jpg';
+    }
+}, true);
+
+// Service Worker Registration (for PWA capabilities)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
+}
