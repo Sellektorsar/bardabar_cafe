@@ -90,15 +90,16 @@ p {
 
 /* Header */
 .header {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
     z-index: 1000;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: #fff;
+    transition: box-shadow 0.3s, background 0.3s;
+}
+
+.header.scrolled {
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    background: #fff;
 }
 
 .header__content {
@@ -422,6 +423,12 @@ p {
 .section__icon {
     color: #ff6b35;
     margin: 0 auto;
+}
+
+section {
+    margin-bottom: 64px;
+    padding-top: 32px;
+    padding-bottom: 32px;
 }
 
 /* About Section */
@@ -880,7 +887,14 @@ p {
 }
 
 .fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s, transform 0.6s;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: none;
 }
 
 /* Responsive Design */

@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model MenuCategory {
+  id    String     @id @default(cuid())
+  name  String
+  order Int        @default(0)
+  items MenuItem[]
+}
+
+model MenuItem {
+  id          String       @id @default(cuid())
+  name        String
+  description String?
+  price       Float
+  imageUrl    String?
+  articleCode String?
+  categoryId  String
+  category    MenuCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  imageUrl    String?
+  date        DateTime
+}
+
+model News {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  imageUrl  String?
+  createdAt DateTime @default(now())
+}
+
+model Staff {
+  id          String  @id @default(cuid())
+  name        String
+  position    String
+  description String?
+  imageUrl    String?
+  order       Int     @default(0)
+}
+
+model AboutContent {
+  id         String @id @default("about")
+  title      String @default("О нас")
+  content    String @default("")
+  advantages String @default("[]") // JSON string of advantages array
+}
+
+model ContactRequest {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  message   String?
+  type      String
+  createdAt DateTime @default(now())
+}
+
+model AdminCredentials {
+  id       String @id @default("admin")
+  password String
+}
+
+model User {
+  id      String  @id
+  isAdmin Boolean @default(false)
+} 
